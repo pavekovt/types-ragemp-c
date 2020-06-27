@@ -1400,6 +1400,7 @@ interface BrowserMp {
 	markAsChat(): void;
 	reload(ignoreCache: boolean): void;
 	call(eventName: string, ...args: any[]): void;
+	callProc(procName: string, args?: any[]): Promise<any>;
 	executeCached(code: string): void;
 }
 
@@ -3324,6 +3325,10 @@ interface EventMpPool {
 	call(eventName: string, ...args: any[]): void;
 	callRemoteUnreliable(eventName: string, ...args: any[]): void;
 	callRemote(eventName: string, ...args: any[]): void;
+	callRemoteProc(procName: string, args?: any[]): Promise<any>;
+	callProc(procName: string, args?: any[]): Promise<any>;
+	cancelPendingRpc(procName: string): void;
+	hasPendingRpc(procName: string): boolean;
 	remove(eventName: string, handler?: (...args: any[]) => void): void;
 	remove(eventNames: string[]): void;
 }
